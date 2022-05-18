@@ -1,5 +1,5 @@
 <template>
-  <form class="new-task" @submit.prevent="handleSubmit">
+  <form class="task-form" @submit.prevent="handleSubmit">
     <input
         type="text"
         placeholder="Type to add new tasks"
@@ -19,22 +19,22 @@ export default {
       newTask: ""
     }
   },
- methods: {
-  handleSubmit(event) {
+  methods: {
+    handleSubmit(event) {
 
-    // if (this.newTask.length === 0) return;
+      if (this.newTask.length === 0) return;
 
-    // const user = Meteor.user()
+      const user = Meteor.user()
 
-    TasksCollection.insert({
-      text: this.newTask.trim(),
-      createdAt: new Date(), // current time
-    //   userId: user._id
-    });
+      TasksCollection.insert({
+        text: this.newTask.trim(),
+        createdAt: new Date(), // current time
+        userId: user._id
+      });
 
-    // Clear form
-    this.newTask = "";
-  }
-},
+      // Clear form
+      this.newTask = "";
+    }
+  },
 }
 </script>
